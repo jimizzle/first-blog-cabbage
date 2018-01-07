@@ -1,0 +1,247 @@
+[
+    {
+        "time": "2018-01-07T22:04:36.825540",
+        "text_widget_id": 1970677136,
+        "editor_id": 1970604944,
+        "text_widget_class": "CodeViewText",
+        "editor_class": "Editor",
+        "sequence": "EditorTextCreated"
+    },
+    {
+        "time": "2018-01-07T22:04:36.830653",
+        "editor_class": "Editor",
+        "text_widget_id": 1970677136,
+        "editor_id": 1970604944,
+        "text_widget_class": "CodeViewText",
+        "filename": "/home/pi/myvenv/lib/python3.5/site-packages/django/shortcuts.py",
+        "sequence": "Open"
+    },
+    {
+        "time": "2018-01-07T22:04:36.831542",
+        "text_widget_id": 1970677136,
+        "index2": "2.0",
+        "text_widget_class": "CodeViewText",
+        "index1": "1.0",
+        "sequence": "TextDelete"
+    },
+    {
+        "time": "2018-01-07T22:04:36.934417",
+        "tags": "()",
+        "text": "\"\"\"\nThis module collects helper functions and classes that \"span\" multiple levels\nof MVC. In other words, these functions/classes introduce controlled coupling\nfor convenience's sake.\n\"\"\"\nimport warnings\n\nfrom django.http import (\n    Http404, HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect,\n)\nfrom django.template import loader\nfrom django.urls import NoReverseMatch, reverse\nfrom django.utils.deprecation import RemovedInDjango30Warning\nfrom django.utils.functional import Promise\n\n\ndef render_to_response(template_name, context=None, content_type=None, status=None, using=None):\n    \"\"\"\n    Return a HttpResponse whose content is filled with the result of calling\n    django.template.loader.render_to_string() with the passed arguments.\n    \"\"\"\n    warnings.warn(\n        'render_to_response() is deprecated in favor render(). It has the '\n        'same signature except that it also requires a request.',\n        RemovedInDjango30Warning, stacklevel=2,\n    )\n    content = loader.render_to_string(template_name, context, using=using)\n    return HttpResponse(content, content_type, status)\n\n\ndef render(request, template_name, context=None, content_type=None, status=None, using=None):\n    \"\"\"\n    Return a HttpResponse whose content is filled with the result of calling\n    django.template.loader.render_to_string() with the passed arguments.\n    \"\"\"\n    content = loader.render_to_string(template_name, context, request, using=using)\n    return HttpResponse(content, content_type, status)\n\n\ndef redirect(to, *args, permanent=False, **kwargs):\n    \"\"\"\n    Return an HttpResponseRedirect to the appropriate URL for the arguments\n    passed.\n\n    The arguments could be:\n\n        * A model: the model's `get_absolute_url()` function will be called.\n\n        * A view name, possibly with arguments: `urls.reverse()` will be used\n          to reverse-resolve the name.\n\n        * A URL, which will be used as-is for the redirect location.\n\n    By default issues a temporary redirect; pass permanent=True to issue a\n    permanent redirect\n    \"\"\"\n    redirect_class = HttpResponsePermanentRedirect if permanent else HttpResponseRedirect\n    return redirect_class(resolve_url(to, *args, **kwargs))\n\n\ndef _get_queryset(klass):\n    \"\"\"\n    Return a QuerySet or a Manager.\n    Duck typing in action: any class with a `get()` method (for\n    get_object_or_404) or a `filter()` method (for get_list_or_404) might do\n    the job.\n    \"\"\"\n    # If it is a model class or anything else with ._default_manager\n    if hasattr(klass, '_default_manager'):\n        return klass._default_manager.all()\n    return klass\n\n\ndef get_object_or_404(klass, *args, **kwargs):\n    \"\"\"\n    Use get() to return an object, or raise a Http404 exception if the object\n    does not exist.\n\n    klass may be a Model, Manager, or QuerySet object. All other passed\n    arguments and keyword arguments are used in the get() query.\n\n    Like with QuerySet.get(), MultipleObjectsReturned is raised if more than\n    one object is found.\n    \"\"\"\n    queryset = _get_queryset(klass)\n    try:\n        return queryset.get(*args, **kwargs)\n    except AttributeError:\n        klass__name = klass.__name__ if isinstance(klass, type) else klass.__class__.__name__\n        raise ValueError(\n            \"First argument to get_object_or_404() must be a Model, Manager, \"\n            \"or QuerySet, not '%s'.\" % klass__name\n        )\n    except queryset.model.DoesNotExist:\n        raise Http404('No %s matches the given query.' % queryset.model._meta.object_name)\n\n\ndef get_list_or_404(klass, *args, **kwargs):\n    \"\"\"\n    Use filter() to return a list of objects, or raise a Http404 exception if\n    the list is empty.\n\n    klass may be a Model, Manager, or QuerySet object. All other passed\n    arguments and keyword arguments are used in the filter() query.\n    \"\"\"\n    queryset = _get_queryset(klass)\n    try:\n        obj_list = list(queryset.filter(*args, **kwargs))\n    except AttributeError:\n        klass__name = klass.__name__ if isinstance(klass, type) else klass.__class__.__name__\n        raise ValueError(\n            \"First argument to get_list_or_404() must be a Model, Manager, or \"\n            \"QuerySet, not '%s'.\" % klass__name\n        )\n    if not obj_list:\n        raise Http404('No %s matches the given query.' % queryset.model._meta.object_name)\n    return obj_list\n\n\ndef resolve_url(to, *args, **kwargs):\n    \"\"\"\n    Return a URL appropriate for the arguments passed.\n\n    The arguments could be:\n\n        * A model: the model's `get_absolute_url()` function will be called.\n\n        * A view name, possibly with arguments: `urls.reverse()` will be used\n          to reverse-resolve the name.\n\n        * A URL, which will be returned as-is.\n    \"\"\"\n    # If it's a model, use get_absolute_url()\n    if hasattr(to, 'get_absolute_url'):\n        return to.get_absolute_url()\n\n    if isinstance(to, Promise):\n        # Expand the lazy instance, as it can cause issues when it is passed\n        # further to some Python functions like urlparse.\n        to = str(to)\n\n    if isinstance(to, str):\n        # Handle relative URLs\n        if to.startswith(('./', '../')):\n            return to\n\n    # Next try a reverse URL resolution.\n    try:\n        return reverse(to, args=args, kwargs=kwargs)\n    except NoReverseMatch:\n        # If this is a callable, re-raise.\n        if callable(to):\n            raise\n        # If this doesn't \"feel\" like a URL, re-raise.\n        if '/' not in to and '.' not in to:\n            raise\n\n    # Finally, fall back and assume it's a URL\n    return to\n",
+        "text_widget_id": 1970677136,
+        "index": "1.0",
+        "text_widget_class": "CodeViewText",
+        "sequence": "TextInsert"
+    },
+    {
+        "view_class": "ShellView",
+        "time": "2018-01-07T22:04:36.954144",
+        "view_id": "ShellView",
+        "sequence": "ShowView"
+    },
+    {
+        "time": "2018-01-07T22:04:37.853137",
+        "widget_class": "Workbench",
+        "widget_id": 1983875824,
+        "sequence": "<FocusIn>"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:37.865937",
+        "tags": "('welcome',)",
+        "text": "Python 3.5.3 (/usr/bin/python3)",
+        "text_widget_id": 1970552880,
+        "index": "1.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:37.869450",
+        "tags": "('io',)",
+        "text": "\n",
+        "text_widget_id": 1970552880,
+        "index": "1.31",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:37.870745",
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970552880,
+        "index": "2.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_class": "CodeViewText",
+        "widget_id": 1970677136,
+        "text_widget_id": 1970677136,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:04:38.823396",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_class": "CodeViewText",
+        "widget_id": 1970677136,
+        "text_widget_id": 1970677136,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:04:40.262717",
+        "sequence": "<Button-1>"
+    },
+    {
+        "time": "2018-01-07T22:04:41.543799",
+        "widget_class": "Button",
+        "widget_id": 1970555120,
+        "sequence": "<Button-1>"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:41.633723",
+        "text_widget_id": 1970552880,
+        "index2": "3.0",
+        "text_widget_class": "ShellText",
+        "index1": "2.4",
+        "sequence": "TextDelete"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:41.637258",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%cd /home/pi/myvenv/lib/python3.5/site-packages/django\n%Run shortcuts.py\n",
+        "text_widget_id": 1970552880,
+        "index": "2.4",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:41.641278",
+        "text_widget_id": 1970552880,
+        "index2": "4.0",
+        "text_widget_class": "ShellText",
+        "index1": "4.0",
+        "sequence": "TextDelete"
+    },
+    {
+        "cmd_line": "%cd /home/pi/myvenv/lib/python3.5/site-packages/django\n",
+        "time": "2018-01-07T22:04:41.644900",
+        "sequence": "MagicCommand"
+    },
+    {
+        "time": "2018-01-07T22:04:41.650745",
+        "command_text": "%cd /home/pi/myvenv/lib/python3.5/site-packages/django\n",
+        "sequence": "ShellCommand"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:41.655081",
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970552880,
+        "index": "3.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:41.657817",
+        "text_widget_id": 1970552880,
+        "index2": "4.0",
+        "text_widget_class": "ShellText",
+        "index1": "4.0",
+        "sequence": "TextDelete"
+    },
+    {
+        "cmd_line": "%Run shortcuts.py\n",
+        "time": "2018-01-07T22:04:41.660336",
+        "sequence": "MagicCommand"
+    },
+    {
+        "time": "2018-01-07T22:04:42.068311",
+        "command_text": "%Run shortcuts.py\n",
+        "sequence": "ShellCommand"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.122910",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T",
+        "text_widget_id": 1970552880,
+        "index": "4.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.124710",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n",
+        "text_widget_id": 1970552880,
+        "index": "4.1",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.125915",
+        "tags": "('io', 'stderr')",
+        "text": "  ",
+        "text_widget_id": 1970552880,
+        "index": "5.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.126969",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/myvenv/lib/python3.5/site-packages/django/shortcuts.py\", line 8, in <module>",
+        "text_widget_id": 1970552880,
+        "index": "5.2",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.127945",
+        "tags": "('io', 'stderr')",
+        "text": "\n",
+        "text_widget_id": 1970552880,
+        "index": "5.93",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.128917",
+        "tags": "('io', 'stderr')",
+        "text": "    from django.http import (\n",
+        "text_widget_id": 1970552880,
+        "index": "6.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.129864",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n",
+        "text_widget_id": 1970552880,
+        "index": "7.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    },
+    {
+        "text_widget_context": "shell",
+        "time": "2018-01-07T22:04:42.135466",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> ",
+        "text_widget_id": 1970552880,
+        "index": "8.0",
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert"
+    }
+]

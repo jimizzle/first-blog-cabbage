@@ -1,0 +1,507 @@
+[
+    {
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:06:09.355170",
+        "sequence": "EditorTextCreated",
+        "editor_class": "Editor",
+        "text_widget_id": 1970585936,
+        "editor_id": 1970518256
+    },
+    {
+        "filename": "/home/pi/myvenv/lib/python3.5/site-packages/django/shortcuts.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:06:09.360127",
+        "sequence": "Open",
+        "editor_class": "Editor",
+        "text_widget_id": 1970585936,
+        "editor_id": 1970518256
+    },
+    {
+        "index1": "1.0",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:06:09.360675",
+        "sequence": "TextDelete",
+        "index2": "2.0",
+        "text_widget_id": 1970585936
+    },
+    {
+        "text": "\"\"\"\nThis module collects helper functions and classes that \"span\" multiple levels\nof MVC. In other words, these functions/classes introduce controlled coupling\nfor convenience's sake.\n\"\"\"\nimport warnings\n\nfrom django.http import (\n    Http404, HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect,\n)\nfrom django.template import loader\nfrom django.urls import NoReverseMatch, reverse\nfrom django.utils.deprecation import RemovedInDjango30Warning\nfrom django.utils.functional import Promise\n\n\ndef render_to_response(template_name, context=None, content_type=None, status=None, using=None):\n    \"\"\"\n    Return a HttpResponse whose content is filled with the result of calling\n    django.template.loader.render_to_string() with the passed arguments.\n    \"\"\"\n    warnings.warn(\n        'render_to_response() is deprecated in favor render(). It has the '\n        'same signature except that it also requires a request.',\n        RemovedInDjango30Warning, stacklevel=2,\n    )\n    content = loader.render_to_string(template_name, context, using=using)\n    return HttpResponse(content, content_type, status)\n\n\ndef render(request, template_name, context=None, content_type=None, status=None, using=None):\n    \"\"\"\n    Return a HttpResponse whose content is filled with the result of calling\n    django.template.loader.render_to_string() with the passed arguments.\n    \"\"\"\n    content = loader.render_to_string(template_name, context, request, using=using)\n    return HttpResponse(content, content_type, status)\n\n\ndef redirect(to, *args, permanent=False, **kwargs):\n    \"\"\"\n    Return an HttpResponseRedirect to the appropriate URL for the arguments\n    passed.\n\n    The arguments could be:\n\n        * A model: the model's `get_absolute_url()` function will be called.\n\n        * A view name, possibly with arguments: `urls.reverse()` will be used\n          to reverse-resolve the name.\n\n        * A URL, which will be used as-is for the redirect location.\n\n    By default issues a temporary redirect; pass permanent=True to issue a\n    permanent redirect\n    \"\"\"\n    redirect_class = HttpResponsePermanentRedirect if permanent else HttpResponseRedirect\n    return redirect_class(resolve_url(to, *args, **kwargs))\n\n\ndef _get_queryset(klass):\n    \"\"\"\n    Return a QuerySet or a Manager.\n    Duck typing in action: any class with a `get()` method (for\n    get_object_or_404) or a `filter()` method (for get_list_or_404) might do\n    the job.\n    \"\"\"\n    # If it is a model class or anything else with ._default_manager\n    if hasattr(klass, '_default_manager'):\n        return klass._default_manager.all()\n    return klass\n\n\ndef get_object_or_404(klass, *args, **kwargs):\n    \"\"\"\n    Use get() to return an object, or raise a Http404 exception if the object\n    does not exist.\n\n    klass may be a Model, Manager, or QuerySet object. All other passed\n    arguments and keyword arguments are used in the get() query.\n\n    Like with QuerySet.get(), MultipleObjectsReturned is raised if more than\n    one object is found.\n    \"\"\"\n    queryset = _get_queryset(klass)\n    try:\n        return queryset.get(*args, **kwargs)\n    except AttributeError:\n        klass__name = klass.__name__ if isinstance(klass, type) else klass.__class__.__name__\n        raise ValueError(\n            \"First argument to get_object_or_404() must be a Model, Manager, \"\n            \"or QuerySet, not '%s'.\" % klass__name\n        )\n    except queryset.model.DoesNotExist:\n        raise Http404('No %s matches the given query.' % queryset.model._meta.object_name)\n\n\ndef get_list_or_404(klass, *args, **kwargs):\n    \"\"\"\n    Use filter() to return a list of objects, or raise a Http404 exception if\n    the list is empty.\n\n    klass may be a Model, Manager, or QuerySet object. All other passed\n    arguments and keyword arguments are used in the filter() query.\n    \"\"\"\n    queryset = _get_queryset(klass)\n    try:\n        obj_list = list(queryset.filter(*args, **kwargs))\n    except AttributeError:\n        klass__name = klass.__name__ if isinstance(klass, type) else klass.__class__.__name__\n        raise ValueError(\n            \"First argument to get_list_or_404() must be a Model, Manager, or \"\n            \"QuerySet, not '%s'.\" % klass__name\n        )\n    if not obj_list:\n        raise Http404('No %s matches the given query.' % queryset.model._meta.object_name)\n    return obj_list\n\n\ndef resolve_url(to, *args, **kwargs):\n    \"\"\"\n    Return a URL appropriate for the arguments passed.\n\n    The arguments could be:\n\n        * A model: the model's `get_absolute_url()` function will be called.\n\n        * A view name, possibly with arguments: `urls.reverse()` will be used\n          to reverse-resolve the name.\n\n        * A URL, which will be returned as-is.\n    \"\"\"\n    # If it's a model, use get_absolute_url()\n    if hasattr(to, 'get_absolute_url'):\n        return to.get_absolute_url()\n\n    if isinstance(to, Promise):\n        # Expand the lazy instance, as it can cause issues when it is passed\n        # further to some Python functions like urlparse.\n        to = str(to)\n\n    if isinstance(to, str):\n        # Handle relative URLs\n        if to.startswith(('./', '../')):\n            return to\n\n    # Next try a reverse URL resolution.\n    try:\n        return reverse(to, args=args, kwargs=kwargs)\n    except NoReverseMatch:\n        # If this is a callable, re-raise.\n        if callable(to):\n            raise\n        # If this doesn't \"feel\" like a URL, re-raise.\n        if '/' not in to and '.' not in to:\n            raise\n\n    # Finally, fall back and assume it's a URL\n    return to\n",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T22:06:09.478565",
+        "sequence": "TextInsert",
+        "index": "1.0",
+        "tags": "()",
+        "text_widget_id": 1970585936
+    },
+    {
+        "sequence": "ShowView",
+        "time": "2018-01-07T22:06:09.501726",
+        "view_id": 1970429104,
+        "view_class": "ShellView"
+    },
+    {
+        "widget_class": "Workbench",
+        "widget_id": 1982889808,
+        "time": "2018-01-07T22:06:10.328085",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "Python 3.5.3 (/usr/bin/python3)",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:10.340719",
+        "sequence": "TextInsert",
+        "index": "1.0",
+        "tags": "('welcome',)",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:10.344132",
+        "sequence": "TextInsert",
+        "index": "1.31",
+        "tags": "('io',)",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": ">>> ",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:10.345412",
+        "sequence": "TextInsert",
+        "index": "2.0",
+        "tags": "('toplevel', 'prompt')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "widget_class": "ShellText",
+        "text_widget_class": "ShellText",
+        "widget_id": 1970462832,
+        "time": "2018-01-07T22:06:20.955152",
+        "sequence": "<Button-1>",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "i",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:21.784452",
+        "sequence": "TextInsert",
+        "index": "2.4",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "m",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:21.829606",
+        "sequence": "TextInsert",
+        "index": "2.5",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "p",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:22.010902",
+        "sequence": "TextInsert",
+        "index": "2.6",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "o",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:22.090902",
+        "sequence": "TextInsert",
+        "index": "2.7",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "r",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:22.171332",
+        "sequence": "TextInsert",
+        "index": "2.8",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "t",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:22.226917",
+        "sequence": "TextInsert",
+        "index": "2.9",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": " ",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:22.354958",
+        "sequence": "TextInsert",
+        "index": "2.10",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "d",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:23.229256",
+        "sequence": "TextInsert",
+        "index": "2.11",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "j",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:23.349060",
+        "sequence": "TextInsert",
+        "index": "2.12",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "a",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:23.821256",
+        "sequence": "TextInsert",
+        "index": "2.13",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:23.949064",
+        "sequence": "TextInsert",
+        "index": "2.14",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "g",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.109169",
+        "sequence": "TextInsert",
+        "index": "2.15",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "o",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.213257",
+        "sequence": "TextInsert",
+        "index": "2.16",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.606240",
+        "sequence": "TextInsert",
+        "index": "2.17",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "index1": "3.0",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.609776",
+        "sequence": "TextDelete",
+        "index2": "3.0",
+        "text_widget_id": 1970462832
+    },
+    {
+        "sequence": "ShellCommand",
+        "command_text": "import django\n",
+        "time": "2018-01-07T22:06:24.612287"
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "T",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.685343",
+        "sequence": "TextInsert",
+        "index": "3.0",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "raceback (most recent call last):\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.687871",
+        "sequence": "TextInsert",
+        "index": "3.1",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "  File \"<pyshell>\", line 1, in <module>\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.689816",
+        "sequence": "TextInsert",
+        "index": "4.0",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "ImportError: No module named 'django'\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.691648",
+        "sequence": "TextInsert",
+        "index": "5.0",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": ">>> ",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:06:24.700039",
+        "sequence": "TextInsert",
+        "index": "6.0",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "widget_class": "Workbench",
+        "widget_id": 1982889808,
+        "time": "2018-01-07T22:06:34.280442",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_class": "Workbench",
+        "widget_id": 1982889808,
+        "time": "2018-01-07T22:09:28.636355",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "i",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:29.926572",
+        "sequence": "TextInsert",
+        "index": "6.4",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "m",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:29.990158",
+        "sequence": "TextInsert",
+        "index": "6.5",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "p",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.166201",
+        "sequence": "TextInsert",
+        "index": "6.6",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "o",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.238186",
+        "sequence": "TextInsert",
+        "index": "6.7",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "r",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.341981",
+        "sequence": "TextInsert",
+        "index": "6.8",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "t",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.406230",
+        "sequence": "TextInsert",
+        "index": "6.9",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": " ",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.582067",
+        "sequence": "TextInsert",
+        "index": "6.10",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "d",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:30.942272",
+        "sequence": "TextInsert",
+        "index": "6.11",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "j",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.110093",
+        "sequence": "TextInsert",
+        "index": "6.12",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "a",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.199070",
+        "sequence": "TextInsert",
+        "index": "6.13",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.317915",
+        "sequence": "TextInsert",
+        "index": "6.14",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "g",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.454448",
+        "sequence": "TextInsert",
+        "index": "6.15",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "o",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.534270",
+        "sequence": "TextInsert",
+        "index": "6.16",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.863019",
+        "sequence": "TextInsert",
+        "index": "6.17",
+        "tags": "('toplevel', 'command')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "index1": "7.0",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.866556",
+        "sequence": "TextDelete",
+        "index2": "7.0",
+        "text_widget_id": 1970462832
+    },
+    {
+        "sequence": "ShellCommand",
+        "command_text": "import django\n",
+        "time": "2018-01-07T22:09:31.869019"
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "T",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.925195",
+        "sequence": "TextInsert",
+        "index": "7.0",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "raceback (most recent call last):\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.928484",
+        "sequence": "TextInsert",
+        "index": "7.1",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "  File \"<pyshell>\", line 1, in <module>\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.931044",
+        "sequence": "TextInsert",
+        "index": "8.0",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": "ImportError: No module named 'django'\n",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.933869",
+        "sequence": "TextInsert",
+        "index": "9.0",
+        "tags": "('io', 'stderr')",
+        "text_widget_id": 1970462832
+    },
+    {
+        "text_widget_context": "shell",
+        "text": ">>> ",
+        "text_widget_class": "ShellText",
+        "time": "2018-01-07T22:09:31.941231",
+        "sequence": "TextInsert",
+        "index": "10.0",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text_widget_id": 1970462832
+    }
+]

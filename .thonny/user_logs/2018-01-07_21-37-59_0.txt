@@ -1,0 +1,202 @@
+[
+    {
+        "sequence": "EditorTextCreated",
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "editor_class": "Editor",
+        "editor_id": 1970903440,
+        "time": "2018-01-07T21:37:59.850339"
+    },
+    {
+        "editor_class": "Editor",
+        "text_widget_id": 1970971408,
+        "text_widget_class": "CodeViewText",
+        "sequence": "Open",
+        "filename": "/home/pi/blog/models.py",
+        "editor_id": 1970903440,
+        "time": "2018-01-07T21:37:59.851521"
+    },
+    {
+        "index1": "1.0",
+        "text_widget_id": 1970971408,
+        "index2": "2.0",
+        "text_widget_class": "CodeViewText",
+        "sequence": "TextDelete",
+        "time": "2018-01-07T21:37:59.852051"
+    },
+    {
+        "text": "from django.db import models\n\n# Create your models here.\n",
+        "tags": "()",
+        "index": "1.0",
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:37:59.949614"
+    },
+    {
+        "view_id": "ShellView",
+        "view_class": "ShellView",
+        "sequence": "ShowView",
+        "time": "2018-01-07T21:37:59.963281"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusIn>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:38:00.474048"
+    },
+    {
+        "text": "Python 3.5.3 (/usr/bin/python3)",
+        "tags": "('welcome',)",
+        "index": "1.0",
+        "text_widget_context": "shell",
+        "text_widget_id": 1970847856,
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:00.485099"
+    },
+    {
+        "text": "\n",
+        "tags": "('io',)",
+        "index": "1.31",
+        "text_widget_context": "shell",
+        "text_widget_id": 1970847856,
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:00.488521"
+    },
+    {
+        "text": ">>> ",
+        "tags": "('toplevel', 'prompt')",
+        "index": "2.0",
+        "text_widget_context": "shell",
+        "text_widget_id": 1970847856,
+        "text_widget_class": "ShellText",
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:00.489795"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusOut>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:38:02.410547"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusIn>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:38:07.124132"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusOut>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:38:08.441708"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusIn>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:38:15.606250"
+    },
+    {
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "widget_id": 1970971408,
+        "text_widget_class": "CodeViewText",
+        "sequence": "<Button-1>",
+        "time": "2018-01-07T21:38:15.637755"
+    },
+    {
+        "text": "\n",
+        "tags": "None",
+        "index": "1.28",
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:16.473379"
+    },
+    {
+        "text": "",
+        "tags": "None",
+        "index": "2.0",
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:16.484932"
+    },
+    {
+        "text": "from django.utils import timezone\n\n\nclass Post(models.Model):\n    author = models.ForeignKey('auth.User')\n    title = models.CharField(max_length=200)\n    text = models.TextField()\n    created_date = models.DateTimeField(\n            default=timezone.now)\n    published_date = models.DateTimeField(\n            blank=True, null=True)\n\n    def publish(self):\n        self.published_date = timezone.now()\n        self.save()\n\n    def __str__(self):\n        return self.title",
+        "tags": "None",
+        "index": "2.0",
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "sequence": "TextInsert",
+        "time": "2018-01-07T21:38:16.637785"
+    },
+    {
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "widget_id": 1970971408,
+        "text_widget_class": "CodeViewText",
+        "sequence": "<<Paste>>",
+        "time": "2018-01-07T21:38:16.638636"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusOut>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:39:03.596604"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusIn>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:41:55.685269"
+    },
+    {
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970971408,
+        "widget_id": 1970971408,
+        "text_widget_class": "CodeViewText",
+        "sequence": "<Button-1>",
+        "time": "2018-01-07T21:41:55.700113"
+    },
+    {
+        "sequence": "<Button-1>",
+        "widget": ".#1972071472",
+        "time": "2018-01-07T21:41:56.747596"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusOut>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:41:56.855743"
+    },
+    {
+        "sequence": "<Button-1>",
+        "widget": ".#1972071472.#1972071472#1971357936",
+        "time": "2018-01-07T21:41:57.860900"
+    },
+    {
+        "editor_class": "Editor",
+        "text_widget_id": 1970971408,
+        "text_widget_class": "CodeViewText",
+        "sequence": "Save",
+        "filename": "/home/pi/blog/models.py",
+        "editor_id": 1970903440,
+        "time": "2018-01-07T21:41:57.962690"
+    },
+    {
+        "time": "2018-01-07T21:41:57.967936",
+        "denied": "False",
+        "sequence": "Command",
+        "command_id": "save_file"
+    },
+    {
+        "widget_class": "Workbench",
+        "sequence": "<FocusIn>",
+        "widget_id": 1983272240,
+        "time": "2018-01-07T21:41:57.969880"
+    }
+]

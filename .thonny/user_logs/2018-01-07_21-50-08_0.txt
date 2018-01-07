@@ -1,0 +1,1845 @@
+[
+    {
+        "text_widget_class": "CodeViewText",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:09.039917",
+        "sequence": "EditorTextCreated",
+        "editor_id": 1970686928
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:50:09.041095",
+        "sequence": "Open",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:09.041649",
+        "sequence": "TextDelete",
+        "index2": "2.0",
+        "index1": "1.0"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:09.138433",
+        "index": "1.0",
+        "sequence": "TextInsert",
+        "tags": "()",
+        "text": "from django.db import models\nfrom django.utils import timezone\n\n\nclass Post(models.Model):\n    author = models.ForeignKey('auth.User')\n    title = models.CharField(max_length=200)\n    text = models.TextField()\n    created_date = models.DateTimeField(\n            default=timezone.now)\n    published_date = models.DateTimeField(\n            blank=True, null=True)\n\n    def publish(self):\n        self.published_date = timezone.now()\n        self.save()\n\n    def __str__(self):\n        return self.title\n\n# Create your models here.\n"
+    },
+    {
+        "time": "2018-01-07T21:50:09.152507",
+        "sequence": "ShowView",
+        "view_class": "ShellView",
+        "view_id": "ShellView"
+    },
+    {
+        "time": "2018-01-07T21:50:09.666682",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "1.0",
+        "time": "2018-01-07T21:50:09.744923",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('welcome',)",
+        "text": "Python 3.5.3 (/usr/bin/python3)"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "1.31",
+        "time": "2018-01-07T21:50:09.749301",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io',)",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "2.0",
+        "time": "2018-01-07T21:50:09.750995",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> "
+    },
+    {
+        "time": "2018-01-07T21:50:11.994384",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:50:15.265358",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:15.278966",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:50:16.073973",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:50:16.148355",
+        "sequence": "TextDelete",
+        "index2": "3.0",
+        "index1": "2.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "2.4",
+        "time": "2018-01-07T21:50:16.150980",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%cd /home/pi/blog\n%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:50:16.155393",
+        "sequence": "TextDelete",
+        "index2": "4.0",
+        "index1": "4.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:50:16.158149",
+        "sequence": "MagicCommand",
+        "cmd_line": "%cd /home/pi/blog\n"
+    },
+    {
+        "time": "2018-01-07T21:50:16.160091",
+        "sequence": "ShellCommand",
+        "command_text": "%cd /home/pi/blog\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "3.0",
+        "time": "2018-01-07T21:50:16.188911",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:50:16.191701",
+        "sequence": "TextDelete",
+        "index2": "4.0",
+        "index1": "4.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:50:16.194133",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:50:16.556397",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "4.0",
+        "time": "2018-01-07T21:50:16.611133",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "4.1",
+        "time": "2018-01-07T21:50:16.612497",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "5.0",
+        "time": "2018-01-07T21:50:16.613544",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "5.2",
+        "time": "2018-01-07T21:50:16.614474",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "5.53",
+        "time": "2018-01-07T21:50:16.615366",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "6.0",
+        "time": "2018-01-07T21:50:16.616293",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django.db import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "7.0",
+        "time": "2018-01-07T21:50:16.617398",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "8.0",
+        "time": "2018-01-07T21:50:16.622132",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "time": "2018-01-07T21:50:19.093100",
+        "sequence": "<Button-1>",
+        "widget_class": "AutomaticNotebook",
+        "widget_id": 1971142416
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:29.948953",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:31.909747",
+        "sequence": "TextDelete",
+        "index2": "1.14",
+        "index1": "1.12"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:31.918934",
+        "index": "1.12",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": " "
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:33.212364",
+        "sequence": "TextDelete",
+        "index2": "None",
+        "index1": "1.12"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:33.367015",
+        "sequence": "TextDelete",
+        "index2": "None",
+        "index1": "1.11"
+    },
+    {
+        "time": "2018-01-07T21:50:35.436193",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:50:35.505082",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:50:35.512182",
+        "sequence": "TextDelete",
+        "index2": "9.0",
+        "index1": "8.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "8.4",
+        "time": "2018-01-07T21:50:35.516032",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:50:35.522190",
+        "sequence": "TextDelete",
+        "index2": "9.0",
+        "index1": "9.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:50:35.526511",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:50:35.937088",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "9.0",
+        "time": "2018-01-07T21:50:35.992395",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "9.1",
+        "time": "2018-01-07T21:50:35.993781",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "10.0",
+        "time": "2018-01-07T21:50:35.994789",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "10.2",
+        "time": "2018-01-07T21:50:35.995726",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "10.53",
+        "time": "2018-01-07T21:50:35.996646",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "11.0",
+        "time": "2018-01-07T21:50:35.997814",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "12.0",
+        "time": "2018-01-07T21:50:35.998774",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "13.0",
+        "time": "2018-01-07T21:50:36.002258",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:39.388623",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:50:44.310039",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:50:46.242822",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:46.259763",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:50:47.177178",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:01.896169",
+        "index": "1.11",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "."
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:02.319325",
+        "index": "1.12",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "d"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:02.527398",
+        "index": "1.13",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "b"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:03.881525",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:04.080350",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:04.201737",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:04.344066",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:04.708148",
+        "sequence": "<Button-3>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:51:04.710379",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:06.626461",
+        "sequence": "<Button-1>",
+        "widget_class": "Menu",
+        "widget_id": 1971141040
+    },
+    {
+        "time": "2018-01-07T21:51:06.710999",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:06.718476",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:06.719748",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:07.180108",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:07.361333",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:07.486665",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:08.252591",
+        "sequence": "<Button-3>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:51:08.256865",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:10.673143",
+        "sequence": "<Button-1>",
+        "widget_class": "Menu",
+        "widget_id": 1971141040
+    },
+    {
+        "time": "2018-01-07T21:51:10.724502",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:10.731849",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:10.733094",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:51:11.096775",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:51:11.168891",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:51:11.175548",
+        "sequence": "TextDelete",
+        "index2": "14.0",
+        "index1": "13.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "13.4",
+        "time": "2018-01-07T21:51:11.179523",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:51:11.185258",
+        "sequence": "TextDelete",
+        "index2": "14.0",
+        "index1": "14.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:51:11.188552",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:51:11.551779",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "14.0",
+        "time": "2018-01-07T21:51:11.606851",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "14.1",
+        "time": "2018-01-07T21:51:11.608343",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "15.0",
+        "time": "2018-01-07T21:51:11.609364",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "15.2",
+        "time": "2018-01-07T21:51:11.610310",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "15.53",
+        "time": "2018-01-07T21:51:11.611230",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "16.0",
+        "time": "2018-01-07T21:51:11.612148",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django.db import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "17.0",
+        "time": "2018-01-07T21:51:11.613112",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "18.0",
+        "time": "2018-01-07T21:51:11.616646",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:17.543252",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:19.753437",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:21.209195",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:21.928910",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:51:24.364211",
+        "sequence": "TextDelete",
+        "index2": "1.14",
+        "index1": "1.11"
+    },
+    {
+        "time": "2018-01-07T21:51:25.125649",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:51:25.200086",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:51:25.204506",
+        "sequence": "TextDelete",
+        "index2": "19.0",
+        "index1": "18.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "18.4",
+        "time": "2018-01-07T21:51:25.206675",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:51:25.210445",
+        "sequence": "TextDelete",
+        "index2": "19.0",
+        "index1": "19.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:51:25.212548",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:51:25.583076",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "19.0",
+        "time": "2018-01-07T21:51:25.638495",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "19.1",
+        "time": "2018-01-07T21:51:25.639777",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "20.0",
+        "time": "2018-01-07T21:51:25.640810",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "20.2",
+        "time": "2018-01-07T21:51:25.641987",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "20.53",
+        "time": "2018-01-07T21:51:25.643045",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "21.0",
+        "time": "2018-01-07T21:51:25.644001",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "22.0",
+        "time": "2018-01-07T21:51:25.644999",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "23.0",
+        "time": "2018-01-07T21:51:25.648733",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "time": "2018-01-07T21:51:30.295165",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:52:03.460510",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:03.504706",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:11.577052",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:12.280811",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:13.064268",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:16.812825",
+        "sequence": "TextDelete",
+        "index2": "1.6",
+        "index1": "1.5"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:16.822637",
+        "index": "1.5",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "D"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:17.237094",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:17.420632",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:17.567218",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:52:18.778018",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:52:18.848899",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:52:18.862935",
+        "sequence": "TextDelete",
+        "index2": "24.0",
+        "index1": "23.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "23.4",
+        "time": "2018-01-07T21:52:18.867052",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:52:18.872892",
+        "sequence": "TextDelete",
+        "index2": "24.0",
+        "index1": "24.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:52:18.876420",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:52:19.277655",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "24.0",
+        "time": "2018-01-07T21:52:19.332599",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "24.1",
+        "time": "2018-01-07T21:52:19.333958",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "25.0",
+        "time": "2018-01-07T21:52:19.334956",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "25.2",
+        "time": "2018-01-07T21:52:19.335875",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "25.53",
+        "time": "2018-01-07T21:52:19.336806",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "26.0",
+        "time": "2018-01-07T21:52:19.337934",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from Django import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "27.0",
+        "time": "2018-01-07T21:52:19.338907",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'Django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "28.0",
+        "time": "2018-01-07T21:52:19.342631",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:21.130792",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:22.439008",
+        "sequence": "TextDelete",
+        "index2": "None",
+        "index1": "1.5"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:22.636003",
+        "index": "1.5",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "d"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:24.524345",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:25.787882",
+        "index": "3.0",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "i"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:25.881282",
+        "index": "3.1",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "m"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.086562",
+        "index": "3.2",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "p"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.174664",
+        "index": "3.3",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "o"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.302686",
+        "index": "3.4",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "r"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.414581",
+        "index": "3.5",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "t"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.542342",
+        "index": "3.6",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": " "
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.779440",
+        "index": "3.7",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "d"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:26.955397",
+        "index": "3.8",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "j"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:27.046740",
+        "index": "3.9",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "a"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:27.174461",
+        "index": "3.10",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "n"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:27.358782",
+        "index": "3.11",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "g"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:27.470712",
+        "index": "3.12",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "o"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:28.232951",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:28.400084",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:52:28.543036",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:52:29.364308",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:52:29.408686",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:52:29.422453",
+        "sequence": "TextDelete",
+        "index2": "29.0",
+        "index1": "28.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "28.4",
+        "time": "2018-01-07T21:52:29.425700",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:52:29.432744",
+        "sequence": "TextDelete",
+        "index2": "29.0",
+        "index1": "29.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:52:29.434844",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:52:29.803599",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "29.0",
+        "time": "2018-01-07T21:52:29.859016",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "29.1",
+        "time": "2018-01-07T21:52:29.860417",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "30.0",
+        "time": "2018-01-07T21:52:29.861485",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "30.2",
+        "time": "2018-01-07T21:52:29.862437",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "30.53",
+        "time": "2018-01-07T21:52:29.863351",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "31.0",
+        "time": "2018-01-07T21:52:29.864289",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "32.0",
+        "time": "2018-01-07T21:52:29.865225",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "33.0",
+        "time": "2018-01-07T21:52:29.868936",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "time": "2018-01-07T21:52:34.138026",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:53:28.648074",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:53:39.405634",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:53:40.339736",
+        "index": "1.11",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "."
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:53:40.742317",
+        "index": "1.12",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "d"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:53:40.990644",
+        "index": "1.13",
+        "sequence": "TextInsert",
+        "tags": "None",
+        "text": "b"
+    },
+    {
+        "filename": "/home/pi/blog/models.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970754832,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:53:42.379025",
+        "sequence": "Save",
+        "editor_id": 1970686928
+    },
+    {
+        "time": "2018-01-07T21:53:42.382176",
+        "sequence": "Command",
+        "command_id": "save_file",
+        "denied": "False"
+    },
+    {
+        "time": "2018-01-07T21:53:43.178022",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:53:43.267818",
+        "sequence": "TextDelete",
+        "index2": "34.0",
+        "index1": "33.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "33.4",
+        "time": "2018-01-07T21:53:43.270514",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:53:43.275032",
+        "sequence": "TextDelete",
+        "index2": "34.0",
+        "index1": "34.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:53:43.277705",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run models.py\n"
+    },
+    {
+        "time": "2018-01-07T21:53:43.676146",
+        "sequence": "ShellCommand",
+        "command_text": "%Run models.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "34.0",
+        "time": "2018-01-07T21:53:43.729418",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "34.1",
+        "time": "2018-01-07T21:53:43.730772",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "35.0",
+        "time": "2018-01-07T21:53:43.731808",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "35.2",
+        "time": "2018-01-07T21:53:43.732756",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/models.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "35.53",
+        "time": "2018-01-07T21:53:43.733703",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "36.0",
+        "time": "2018-01-07T21:53:43.734646",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django.db import models\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "37.0",
+        "time": "2018-01-07T21:53:43.735580",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "38.0",
+        "time": "2018-01-07T21:53:43.739163",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    },
+    {
+        "time": "2018-01-07T21:53:46.314279",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:54:00.816823",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1970754832,
+        "time": "2018-01-07T21:54:00.855369",
+        "sequence": "<Button-1>",
+        "widget_id": 1970754832
+    },
+    {
+        "time": "2018-01-07T21:54:17.747551",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:54:25.619821",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:54:28.412848",
+        "sequence": "<FocusOut>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "editor_class": "Editor",
+        "text_widget_id": 1970788368,
+        "time": "2018-01-07T21:55:55.088914",
+        "sequence": "EditorTextCreated",
+        "editor_id": 1970787856
+    },
+    {
+        "filename": "/home/pi/blog/views.py",
+        "editor_class": "Editor",
+        "text_widget_id": 1970788368,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:55:55.090009",
+        "sequence": "Open",
+        "editor_id": 1970787856
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970788368,
+        "time": "2018-01-07T21:55:55.090566",
+        "sequence": "TextDelete",
+        "index2": "2.0",
+        "index1": "1.0"
+    },
+    {
+        "text_widget_class": "CodeViewText",
+        "text_widget_id": 1970788368,
+        "time": "2018-01-07T21:55:55.102702",
+        "index": "1.0",
+        "sequence": "TextInsert",
+        "tags": "()",
+        "text": "from django.shortcuts import render\n\n# Create your views here.\n"
+    },
+    {
+        "time": "2018-01-07T21:55:57.813694",
+        "sequence": "<FocusIn>",
+        "widget_class": "Workbench",
+        "widget_id": 1983958704
+    },
+    {
+        "time": "2018-01-07T21:56:04.521185",
+        "sequence": "<Button-1>",
+        "widget_class": "Button",
+        "widget_id": 1970633040
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:56:04.595476",
+        "sequence": "TextDelete",
+        "index2": "39.0",
+        "index1": "38.4",
+        "text_widget_context": "shell"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "38.4",
+        "time": "2018-01-07T21:56:04.598337",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run views.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "time": "2018-01-07T21:56:04.603042",
+        "sequence": "TextDelete",
+        "index2": "39.0",
+        "index1": "39.0",
+        "text_widget_context": "shell"
+    },
+    {
+        "time": "2018-01-07T21:56:04.605556",
+        "sequence": "MagicCommand",
+        "cmd_line": "%Run views.py\n"
+    },
+    {
+        "time": "2018-01-07T21:56:05.009336",
+        "sequence": "ShellCommand",
+        "command_text": "%Run views.py\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "39.0",
+        "time": "2018-01-07T21:56:05.062968",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'vertically_spaced')",
+        "text": "T"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "39.1",
+        "time": "2018-01-07T21:56:05.064344",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "raceback (most recent call last):\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "40.0",
+        "time": "2018-01-07T21:56:05.065373",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "  "
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "40.2",
+        "time": "2018-01-07T21:56:05.066311",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr', 'hyperlink')",
+        "text": "File \"/home/pi/blog/views.py\", line 1, in <module>"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "40.52",
+        "time": "2018-01-07T21:56:05.067325",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "41.0",
+        "time": "2018-01-07T21:56:05.068375",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "    from django.shortcuts import render\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "42.0",
+        "time": "2018-01-07T21:56:05.069335",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('io', 'stderr')",
+        "text": "ImportError: No module named 'django'\n"
+    },
+    {
+        "text_widget_class": "ShellText",
+        "text_widget_id": 1970630768,
+        "index": "43.0",
+        "time": "2018-01-07T21:56:05.073245",
+        "sequence": "TextInsert",
+        "text_widget_context": "shell",
+        "tags": "('toplevel', 'prompt', 'vertically_spaced')",
+        "text": ">>> "
+    }
+]

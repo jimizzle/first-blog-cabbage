@@ -1,0 +1,39 @@
+{
+   "checksum": "da973c762de3396bf0ebf505635edbb7",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13159832910012617",
+            "id": "6",
+            "meta_info": {
+               "last_visited_desktop": "13159836296601971"
+            },
+            "name": "Django installation · Django Girls Tutorial",
+            "type": "url",
+            "url": "https://tutorial.djangogirls.org/en/django_installation/"
+         } ],
+         "date_added": "13159832170601980",
+         "date_modified": "13159832910012617",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13159832170602001",
+         "date_modified": "0",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13159832170602006",
+         "date_modified": "0",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

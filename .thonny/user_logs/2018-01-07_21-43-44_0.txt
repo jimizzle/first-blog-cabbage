@@ -1,0 +1,564 @@
+[
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970263952,
+        "text_widget_id": 1970336624,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:43:44.969695",
+        "sequence": "EditorTextCreated"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970263952,
+        "text_widget_id": 1970336624,
+        "filename": "/home/pi/blog/models.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:43:44.970869",
+        "sequence": "Open"
+    },
+    {
+        "index1": "1.0",
+        "index2": "2.0",
+        "text_widget_id": 1970336624,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:43:44.971389",
+        "sequence": "TextDelete"
+    },
+    {
+        "tags": "()",
+        "text": "from django.db import models\nfrom django.utils import timezone\n\n\nclass Post(models.Model):\n    author = models.ForeignKey('auth.User')\n    title = models.CharField(max_length=200)\n    text = models.TextField()\n    created_date = models.DateTimeField(\n            default=timezone.now)\n    published_date = models.DateTimeField(\n            blank=True, null=True)\n\n    def publish(self):\n        self.published_date = timezone.now()\n        self.save()\n\n    def __str__(self):\n        return self.title\n\n# Create your models here.\n",
+        "text_widget_id": 1970336624,
+        "index": "1.0",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:43:45.068860",
+        "sequence": "TextInsert"
+    },
+    {
+        "view_id": 1970174416,
+        "time": "2018-01-07T21:43:45.082981",
+        "view_class": "ShellView",
+        "sequence": "ShowView"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:43:45.653880",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "tags": "('welcome',)",
+        "text": "Python 3.5.3 (/usr/bin/python3)",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:43:45.666759",
+        "index": "1.0",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "tags": "('io',)",
+        "text": "\n",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:43:45.670136",
+        "index": "1.31",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:43:45.671419",
+        "index": "2.0",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:44:03.432834",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970337520,
+        "text_widget_id": 1970336464,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:44:06.673379",
+        "sequence": "EditorTextCreated"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970337520,
+        "text_widget_id": 1970336464,
+        "filename": "/home/pi/blog/migrations/__init__.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:44:06.674352",
+        "sequence": "Open"
+    },
+    {
+        "index1": "1.0",
+        "index2": "2.0",
+        "text_widget_id": 1970336464,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:44:06.674814",
+        "sequence": "TextDelete"
+    },
+    {
+        "tags": "()",
+        "text": "",
+        "text_widget_id": 1970336464,
+        "index": "1.0",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:44:06.677318",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:44:23.945347",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1970720592,
+        "widget_class": "EditorNotebook",
+        "time": "2018-01-07T21:44:25.861749",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:44:36.995906",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:44:42.765564",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:44:46.492990",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970264240,
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:45:37.008062",
+        "sequence": "EditorTextCreated"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970264240,
+        "text_widget_id": 1949879344,
+        "filename": "/home/pi/mysite/settings.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:45:37.009179",
+        "sequence": "Open"
+    },
+    {
+        "index1": "1.0",
+        "index2": "2.0",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:45:37.009719",
+        "sequence": "TextDelete"
+    },
+    {
+        "tags": "()",
+        "text": "\"\"\"\nDjango settings for mysite project.\n\nGenerated by 'django-admin startproject' using Django 2.0.1.\n\nFor more information on this file, see\nhttps://docs.djangoproject.com/en/2.0/topics/settings/\n\nFor the full list of settings and their values, see\nhttps://docs.djangoproject.com/en/2.0/ref/settings/\n\"\"\"\n\nimport os\n\n# Build paths inside the project like this: os.path.join(BASE_DIR, ...)\nBASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n\n\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/\n\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = '&m7v$fdabnx@5=2yoj=z39&c6v-+#0h&l7dl6rcizo&px891(8'\n\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\n\nALLOWED_HOSTS = ['127.0.0.1', '<your_username>.pythonanywhere.com']\n\n\n# Application definition\n\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'blog',\n]\n\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\n\nROOT_URLCONF = 'mysite.urls'\n\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',\n                'django.contrib.messages.context_processors.messages',\n            ],\n        },\n    },\n]\n\nWSGI_APPLICATION = 'mysite.wsgi.application'\n\n\n# Database\n# https://docs.djangoproject.com/en/2.0/ref/settings/#databases\n\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),\n    }\n}\n\n\n# Password validation\n# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators\n\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',\n    },\n]\n\n\n# Internationalization\n# https://docs.djangoproject.com/en/2.0/topics/i18n/\n\nLANGUAGE_CODE = 'en-us'\n\nTIME_ZONE = 'US'\n\nUSE_I18N = True\n\nUSE_L10N = True\n\nUSE_TZ = True\n\n\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/2.0/howto/static-files/\n\nSTATIC_URL = '/static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static')",
+        "text_widget_id": 1949879344,
+        "index": "1.0",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:45:37.026045",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:45:51.877916",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:45:55.196461",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:45:55.857481",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1951695696,
+        "widget_class": "Scrollbar",
+        "time": "2018-01-07T21:45:58.694117",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:46:07.040339",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:46:16.796838",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1949879344,
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:46:19.435945",
+        "sequence": "<Button-1>"
+    },
+    {
+        "index1": "40.10",
+        "index2": "None",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:46:21.757677",
+        "sequence": "TextDelete"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970264240,
+        "text_widget_id": 1949879344,
+        "filename": "/home/pi/mysite/settings.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:46:23.494371",
+        "sequence": "Save"
+    },
+    {
+        "command_id": "save_file",
+        "time": "2018-01-07T21:46:23.500692",
+        "denied": "False",
+        "sequence": "Command"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:46:26.065344",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:46:37.543063",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:46:38.602175",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:47:29.186230",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1970212912,
+        "widget_class": "ShellText",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:29.232543",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1970215152,
+        "widget_class": "Button",
+        "time": "2018-01-07T21:47:31.080985",
+        "sequence": "<Button-1>"
+    },
+    {
+        "index1": "2.4",
+        "index2": "3.0",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.138768",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextDelete"
+    },
+    {
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%cd /home/pi/mysite\n%Run settings.py\n",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.140096",
+        "index": "2.4",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "index1": "4.0",
+        "index2": "4.0",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.142307",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextDelete"
+    },
+    {
+        "time": "2018-01-07T21:47:31.143771",
+        "cmd_line": "%cd /home/pi/mysite\n",
+        "sequence": "MagicCommand"
+    },
+    {
+        "command_text": "%cd /home/pi/mysite\n",
+        "time": "2018-01-07T21:47:31.145251",
+        "sequence": "ShellCommand"
+    },
+    {
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.159499",
+        "index": "3.0",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "index1": "4.0",
+        "index2": "4.0",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.160989",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextDelete"
+    },
+    {
+        "time": "2018-01-07T21:47:31.162290",
+        "cmd_line": "%Run settings.py\n",
+        "sequence": "MagicCommand"
+    },
+    {
+        "command_text": "%Run settings.py\n",
+        "time": "2018-01-07T21:47:31.556832",
+        "sequence": "ShellCommand"
+    },
+    {
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:31.611193",
+        "index": "4.0",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_id": 1970212912,
+        "widget_class": "ShellText",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:47:33.591464",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1951695696,
+        "widget_class": "Scrollbar",
+        "time": "2018-01-07T21:47:37.331622",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:47:53.751652",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:48:32.851683",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1949879344,
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:48:32.871641",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:48:38.551720",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:48:46.435137",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1949879344,
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:48:46.458662",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1970215152,
+        "widget_class": "Button",
+        "time": "2018-01-07T21:48:47.918163",
+        "sequence": "<Button-1>"
+    },
+    {
+        "index1": "4.4",
+        "index2": "5.0",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:48:48.020783",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextDelete"
+    },
+    {
+        "tags": "('automagic', 'toplevel', 'command')",
+        "text": "%Run settings.py\n",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:48:48.023330",
+        "index": "4.4",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "index1": "5.0",
+        "index2": "5.0",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:48:48.027132",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextDelete"
+    },
+    {
+        "time": "2018-01-07T21:48:48.029709",
+        "cmd_line": "%Run settings.py\n",
+        "sequence": "MagicCommand"
+    },
+    {
+        "command_text": "%Run settings.py\n",
+        "time": "2018-01-07T21:48:48.466041",
+        "sequence": "ShellCommand"
+    },
+    {
+        "tags": "('toplevel', 'prompt')",
+        "text": ">>> ",
+        "text_widget_id": 1970212912,
+        "time": "2018-01-07T21:48:48.519673",
+        "index": "5.0",
+        "text_widget_class": "ShellText",
+        "text_widget_context": "shell",
+        "sequence": "TextInsert"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:48:49.656053",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:49:18.341342",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1951695696,
+        "widget_class": "Scrollbar",
+        "time": "2018-01-07T21:49:20.659566",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:49:24.530881",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:49:31.429712",
+        "sequence": "<FocusIn>"
+    },
+    {
+        "widget_id": 1951695696,
+        "widget_class": "Scrollbar",
+        "time": "2018-01-07T21:49:32.867243",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1949879344,
+        "widget_class": "CodeViewText",
+        "text_widget_id": 1949879344,
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:49:38.985326",
+        "sequence": "<Button-1>"
+    },
+    {
+        "tags": "None",
+        "text": ",",
+        "text_widget_id": 1949879344,
+        "index": "40.10",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:49:40.919950",
+        "sequence": "TextInsert"
+    },
+    {
+        "editor_class": "Editor",
+        "editor_id": 1970264240,
+        "text_widget_id": 1949879344,
+        "filename": "/home/pi/mysite/settings.py",
+        "text_widget_class": "CodeViewText",
+        "time": "2018-01-07T21:49:41.299846",
+        "sequence": "Save"
+    },
+    {
+        "command_id": "save_file",
+        "time": "2018-01-07T21:49:41.303810",
+        "denied": "False",
+        "sequence": "Command"
+    },
+    {
+        "widget": ".#1971432432",
+        "time": "2018-01-07T21:49:45.073951",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:49:45.158770",
+        "sequence": "<FocusOut>"
+    },
+    {
+        "widget": ".#1971432432",
+        "time": "2018-01-07T21:49:47.538587",
+        "sequence": "<Button-1>"
+    },
+    {
+        "widget_id": 1982635376,
+        "widget_class": "Workbench",
+        "time": "2018-01-07T21:49:47.635191",
+        "sequence": "<FocusIn>"
+    }
+]
